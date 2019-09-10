@@ -14,12 +14,6 @@ namespace TutorAppBak.Models
     
     public partial class Tutor
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Tutor()
-        {
-            this.Reservation = new HashSet<Reservation>();
-        }
-    
         public int id { get; set; }
         public string names { get; set; }
         public string last_names { get; set; }
@@ -31,8 +25,5 @@ namespace TutorAppBak.Models
         public Nullable<System.DateTime> academic_group_foundation_date { get; set; }
         public string academic_group_address { get; set; }
         public Nullable<System.DateTime> birth_date { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reservation> Reservation { get; set; }
     }
 }

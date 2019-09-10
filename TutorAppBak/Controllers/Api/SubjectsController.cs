@@ -14,7 +14,7 @@ namespace TutorAppBak.Controllers.Api
 {
     public class SubjectsController : ApiController
     {
-        private TutorAppDBEntities db = new TutorAppDBEntities();
+        private tutorappDBEntities2 db = new tutorappDBEntities2();
 
         // GET: api/Subjects
         public IQueryable<Subject> GetSubject()

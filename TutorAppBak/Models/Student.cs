@@ -14,12 +14,6 @@ namespace TutorAppBak.Models
     
     public partial class Student
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Student()
-        {
-            this.Reservation = new HashSet<Reservation>();
-        }
-    
         public int id { get; set; }
         public string names { get; set; }
         public string last_names { get; set; }
@@ -27,8 +21,5 @@ namespace TutorAppBak.Models
         public string address { get; set; }
         public string username { get; set; }
         public string password { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reservation> Reservation { get; set; }
     }
 }

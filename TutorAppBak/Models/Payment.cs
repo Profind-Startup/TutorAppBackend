@@ -14,18 +14,9 @@ namespace TutorAppBak.Models
     
     public partial class Payment
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Payment()
-        {
-            this.Reservation = new HashSet<Reservation>();
-        }
-    
         public int id { get; set; }
         public Nullable<int> reservation_id { get; set; }
         public Nullable<System.DateTime> received_date { get; set; }
         public Nullable<double> total_amout { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reservation> Reservation { get; set; }
     }
 }

@@ -21,11 +21,5 @@ namespace TutorAppBak.Models
         public Nullable<System.TimeSpan> reservation_time_start { get; set; }
         public Nullable<System.TimeSpan> reservation_time_end { get; set; }
         public Nullable<int> subject_id { get; set; }
-        public Nullable<int> payment_id { get; set; }
-    
-        public virtual Payment Payment { get; set; }
-        public virtual Student Student { get; set; }
-        public virtual Subject Subject { get; set; }
-        public virtual Tutor Tutor { get; set; }
     }
 }

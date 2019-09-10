@@ -13,10 +13,10 @@ namespace TutorAppBak.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TutorAppDBEntities : DbContext
+    public partial class tutorappDBEntities2 : DbContext
     {
-        public TutorAppDBEntities()
-            : base("name=TutorAppDBEntities")
+        public tutorappDBEntities2()
+            : base("name=tutorappDBEntities2")
         {
         }
     
@@ -29,7 +29,6 @@ namespace TutorAppBak.Models
         public virtual DbSet<Reservation> Reservation { get; set; }
         public virtual DbSet<Student> Student { get; set; }
         public virtual DbSet<Subject> Subject { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tutor> Tutor { get; set; }
     }
 }

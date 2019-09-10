@@ -173,37 +173,34 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Payment.cs">
-      <DependentUpon>TutorAppDB.tt</DependentUpon>
+      <DependentUpon>TutorAppDB2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Reservation.cs">
-      <DependentUpon>TutorAppDB.tt</DependentUpon>
+      <DependentUpon>TutorAppDB2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Student.cs">
-      <DependentUpon>TutorAppDB.tt</DependentUpon>
+      <DependentUpon>TutorAppDB2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Subject.cs">
-      <DependentUpon>TutorAppDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>TutorAppDB.tt</DependentUpon>
+      <DependentUpon>TutorAppDB2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tutor.cs">
-      <DependentUpon>TutorAppDB.tt</DependentUpon>
+      <DependentUpon>TutorAppDB2.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TutorAppDB.Context.cs">
+    <Compile Include="Models\TutorAppDB2.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TutorAppDB.Context.tt</DependentUpon>
+      <DependentUpon>TutorAppDB2.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TutorAppDB.cs">
+    <Compile Include="Models\TutorAppDB2.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TutorAppDB.tt</DependentUpon>
+      <DependentUpon>TutorAppDB2.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TutorAppDB.Designer.cs">
+    <Compile Include="Models\TutorAppDB2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TutorAppDB.edmx</DependentUpon>
+      <DependentUpon>TutorAppDB2.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -216,15 +213,15 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\TutorAppDB.Context.tt">
+    <Content Include="Models\TutorAppDB2.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TutorAppDB.Context.cs</LastGenOutput>
-      <DependentUpon>TutorAppDB.edmx</DependentUpon>
+      <DependentUpon>TutorAppDB2.edmx</DependentUpon>
+      <LastGenOutput>TutorAppDB2.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\TutorAppDB.tt">
+    <Content Include="Models\TutorAppDB2.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TutorAppDB.edmx</DependentUpon>
-      <LastGenOutput>TutorAppDB.cs</LastGenOutput>
+      <DependentUpon>TutorAppDB2.edmx</DependentUpon>
+      <LastGenOutput>TutorAppDB2.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -247,12 +244,12 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <EntityDeploy Include="Models\TutorAppDB.edmx">
+    <EntityDeploy Include="Models\TutorAppDB2.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TutorAppDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>TutorAppDB2.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\TutorAppDB.edmx.diagram">
-      <DependentUpon>TutorAppDB.edmx</DependentUpon>
+    <Content Include="Models\TutorAppDB2.edmx.diagram">
+      <DependentUpon>TutorAppDB2.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
