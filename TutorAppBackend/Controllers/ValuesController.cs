@@ -35,5 +35,10 @@ namespace TutorAppBackend.Controllers
         public void Delete(int id)
         {
         }
+
+        public void Temp(int id)
+        {
+
+        }
     }
 }
