@@ -12,21 +12,21 @@ using TutorAppBackend.Models;
 
 namespace TutorAppBackend.Controllers.api
 {
-    public class ReservationsController : ApiController
+    public class ReservationsController : BaseApiController
     {
-        private TutorAppBD db = new TutorAppBD();
+        public ReservationsController() : base() { }
 
         // GET: api/Reservations
         public IQueryable<Reservation> GetReservation()
         {
-            return db.Reservation;
+            return _context.Reservation;
         }
 
         // GET: api/Reservations/5
         [ResponseType(typeof(Reservation))]
         public IHttpActionResult GetReservation(int id)
         {
-            Reservation reservation = db.Reservation.Find(id);
+            Reservation reservation = _context.Reservation.Find(id);
             if (reservation == null)
             {
                 return NotFound();
@@ -49,11 +49,11 @@ namespace TutorAppBackend.Controllers.api
                 return BadRequest();
             }
 
-            db.Entry(reservation).State = EntityState.Modified;
+            _context.Entry(reservation).State = EntityState.Modified;
 
             try
             {
-                db.SaveChanges();
+                _context.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -79,8 +79,8 @@ namespace TutorAppBackend.Controllers.api
                 return BadRequest(ModelState);
             }
 
-            db.Reservation.Add(reservation);
-            db.SaveChanges();
+            _context.Reservation.Add(reservation);
+            _context.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = reservation.id }, reservation);
         }
@@ -89,14 +89,14 @@ namespace TutorAppBackend.Controllers.api
         [ResponseType(typeof(Reservation))]
         public IHttpActionResult DeleteReservation(int id)
         {
-            Reservation reservation = db.Reservation.Find(id);
+            Reservation reservation = _context.Reservation.Find(id);
             if (reservation == null)
             {
                 return NotFound();
             }
 
-            db.Reservation.Remove(reservation);
-            db.SaveChanges();
+            _context.Reservation.Remove(reservation);
+            _context.SaveChanges();
 
             return Ok(reservation);
         }
@@ -105,14 +105,14 @@ namespace TutorAppBackend.Controllers.api
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool ReservationExists(int id)
         {
-            return db.Reservation.Count(e => e.id == id) > 0;
+            return _context.Reservation.Count(e => e.id == id) > 0;
         }
     }
 }

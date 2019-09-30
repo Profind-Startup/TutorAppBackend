@@ -12,21 +12,21 @@ using TutorAppBackend.Models;
 
 namespace TutorAppBackend.Controllers.api
 {
-    public class StudentsController : ApiController
+    public class StudentsController : BaseApiController
     {
-        private TutorAppBD db = new TutorAppBD();
+        public StudentsController() : base() { }
 
         // GET: api/Students
         public IQueryable<Student> GetStudent()
         {
-            return db.Student;
+            return _context.Student;
         }
 
         // GET: api/Students/5
         [ResponseType(typeof(Student))]
         public IHttpActionResult GetStudent(int id)
         {
-            Student student = db.Student.Find(id);
+            Student student = _context.Student.Find(id);
             if (student == null)
             {
                 return NotFound();
@@ -49,11 +49,11 @@ namespace TutorAppBackend.Controllers.api
                 return BadRequest();
             }
 
-            db.Entry(student).State = EntityState.Modified;
+            _context.Entry(student).State = EntityState.Modified;
 
             try
             {
-                db.SaveChanges();
+                _context.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -79,8 +79,8 @@ namespace TutorAppBackend.Controllers.api
                 return BadRequest(ModelState);
             }
 
-            db.Student.Add(student);
-            db.SaveChanges();
+            _context.Student.Add(student);
+            _context.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = student.id }, student);
         }
@@ -89,14 +89,14 @@ namespace TutorAppBackend.Controllers.api
         [ResponseType(typeof(Student))]
         public IHttpActionResult DeleteStudent(int id)
         {
-            Student student = db.Student.Find(id);
+            Student student = _context.Student.Find(id);
             if (student == null)
             {
                 return NotFound();
             }
 
-            db.Student.Remove(student);
-            db.SaveChanges();
+            _context.Student.Remove(student);
+            _context.SaveChanges();
 
             return Ok(student);
         }
@@ -105,14 +105,14 @@ namespace TutorAppBackend.Controllers.api
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool StudentExists(int id)
         {
-            return db.Student.Count(e => e.id == id) > 0;
+            return _context.Student.Count(e => e.id == id) > 0;
         }
     }
 }
