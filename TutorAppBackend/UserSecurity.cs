@@ -10,7 +10,7 @@ namespace TutorAppBackend
     {
         public static bool Login(string username, string password)
         {
-            using (TutorAppBD entities = new TutorAppBD())
+            using (var entities = new TutorAppDbContext())
             {
                 return entities.User.Any(user =>
                        user.username.Equals(username, StringComparison.OrdinalIgnoreCase)

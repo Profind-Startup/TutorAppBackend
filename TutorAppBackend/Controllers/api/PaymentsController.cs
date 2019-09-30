@@ -12,21 +12,21 @@ using TutorAppBackend.Models;
 
 namespace TutorAppBackend.Controllers.api
 {
-    public class PaymentsController : ApiController
+    public class PaymentsController : BaseApiController
     {
-        private TutorAppBD db = new TutorAppBD();
+        public PaymentsController() : base() { }
 
         // GET: api/Payments
         public IQueryable<Payment> GetPayment()
         {
-            return db.Payment;
+            return _context.Payment;
         }
 
         // GET: api/Payments/5
         [ResponseType(typeof(Payment))]
         public IHttpActionResult GetPayment(int id)
         {
-            Payment payment = db.Payment.Find(id);
+            var payment = _context.Payment.Find(id);
             if (payment == null)
             {
                 return NotFound();
@@ -49,11 +49,11 @@ namespace TutorAppBackend.Controllers.api
                 return BadRequest();
             }
 
-            db.Entry(payment).State = EntityState.Modified;
+            _context.Entry(payment).State = EntityState.Modified;
 
             try
             {
-                db.SaveChanges();
+                _context.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -79,8 +79,8 @@ namespace TutorAppBackend.Controllers.api
                 return BadRequest(ModelState);
             }
 
-            db.Payment.Add(payment);
-            db.SaveChanges();
+            _context.Payment.Add(payment);
+            _context.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = payment.id }, payment);
         }
@@ -89,14 +89,14 @@ namespace TutorAppBackend.Controllers.api
         [ResponseType(typeof(Payment))]
         public IHttpActionResult DeletePayment(int id)
         {
-            Payment payment = db.Payment.Find(id);
+            var payment = _context.Payment.Find(id);
             if (payment == null)
             {
                 return NotFound();
             }
 
-            db.Payment.Remove(payment);
-            db.SaveChanges();
+            _context.Payment.Remove(payment);
+            _context.SaveChanges();
 
             return Ok(payment);
         }
@@ -105,14 +105,14 @@ namespace TutorAppBackend.Controllers.api
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool PaymentExists(int id)
         {
-            return db.Payment.Count(e => e.id == id) > 0;
+            return _context.Payment.Count(e => e.id == id) > 0;
         }
     }
 }

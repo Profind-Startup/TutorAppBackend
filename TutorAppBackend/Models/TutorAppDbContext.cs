@@ -4,14 +4,10 @@ namespace TutorAppBackend.Models
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
-    public partial class TutorAppBD : DbContext
+    public partial class TutorAppDbContext : IdentityDbContext<ApplicationUser>
     {
-        public TutorAppBD()
-            : base("name=TutorAppBD")
-        {
-        }
-
         public virtual DbSet<Payment> Payment { get; set; }
         public virtual DbSet<Reservation> Reservation { get; set; }
         public virtual DbSet<Student> Student { get; set; }
@@ -19,18 +15,27 @@ namespace TutorAppBackend.Models
         public virtual DbSet<Tutor> Tutor { get; set; }
         public virtual DbSet<User> User { get; set; }
 
+        public TutorAppDbContext()
+            : base("DefaultConnection", throwIfV1Schema: false)
+        {
+        }
+
+        public static TutorAppDbContext Create() => new TutorAppDbContext();
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-        /*    modelBuilder.Entity<Payment>()
-                .HasMany(e => e.Reservation)
-                .WithOptional(e => e.Payment)
-                .HasForeignKey(e => e.payment_id);
+            base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Student>()
-                .HasMany(e => e.Reservation)
-                .WithOptional(e => e.Student)
-                .HasForeignKey(e => e.student_id);
-                */
+            /*    modelBuilder.Entity<Payment>()
+                    .HasMany(e => e.Reservation)
+                    .WithOptional(e => e.Payment)
+                    .HasForeignKey(e => e.payment_id);
+
+                modelBuilder.Entity<Student>()
+                    .HasMany(e => e.Reservation)
+                    .WithOptional(e => e.Student)
+                    .HasForeignKey(e => e.student_id);
+                    */
             modelBuilder.Entity<Subject>()
                 .Property(e => e.name)
                 .IsUnicode(false);

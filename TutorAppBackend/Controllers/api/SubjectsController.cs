@@ -12,21 +12,21 @@ using TutorAppBackend.Models;
 
 namespace TutorAppBackend.Controllers.api
 {
-    public class SubjectsController : ApiController
+    public class SubjectsController : BaseApiController
     {
-        private TutorAppBD db = new TutorAppBD();
+        public SubjectsController() : base() { }
 
         // GET: api/Subjects
         public IQueryable<Subject> GetSubject()
         {
-            return db.Subject;
+            return _context.Subject;
         }
 
         // GET: api/Subjects/5
         [ResponseType(typeof(Subject))]
         public IHttpActionResult GetSubject(int id)
         {
-            Subject subject = db.Subject.Find(id);
+            Subject subject = _context.Subject.Find(id);
             if (subject == null)
             {
                 return NotFound();
@@ -49,11 +49,11 @@ namespace TutorAppBackend.Controllers.api
                 return BadRequest();
             }
 
-            db.Entry(subject).State = EntityState.Modified;
+            _context.Entry(subject).State = EntityState.Modified;
 
             try
             {
-                db.SaveChanges();
+                _context.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -79,8 +79,8 @@ namespace TutorAppBackend.Controllers.api
                 return BadRequest(ModelState);
             }
 
-            db.Subject.Add(subject);
-            db.SaveChanges();
+            _context.Subject.Add(subject);
+            _context.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = subject.id }, subject);
         }
@@ -89,14 +89,14 @@ namespace TutorAppBackend.Controllers.api
         [ResponseType(typeof(Subject))]
         public IHttpActionResult DeleteSubject(int id)
         {
-            Subject subject = db.Subject.Find(id);
+            Subject subject = _context.Subject.Find(id);
             if (subject == null)
             {
                 return NotFound();
             }
 
-            db.Subject.Remove(subject);
-            db.SaveChanges();
+            _context.Subject.Remove(subject);
+            _context.SaveChanges();
 
             return Ok(subject);
         }
@@ -105,14 +105,14 @@ namespace TutorAppBackend.Controllers.api
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool SubjectExists(int id)
         {
-            return db.Subject.Count(e => e.id == id) > 0;
+            return _context.Subject.Count(e => e.id == id) > 0;
         }
     }
 }

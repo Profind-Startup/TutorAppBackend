@@ -12,21 +12,21 @@ using TutorAppBackend.Models;
 
 namespace TutorAppBackend.Controllers.api
 {
-    public class UsersController : ApiController
+    public class UsersController : BaseApiController
     {
-        private TutorAppBD db = new TutorAppBD();
+        public UsersController() : base() { }
 
         // GET: api/Users
         public IQueryable<User> GetUser()
         {
-            return db.User;
+            return _context.User;
         }
 
         // GET: api/Users/5
         [ResponseType(typeof(User))]
         public IHttpActionResult GetUser(int id)
         {
-            User user = db.User.Find(id);
+            User user = _context.User.Find(id);
             if (user == null)
             {
                 return NotFound();
@@ -49,11 +49,11 @@ namespace TutorAppBackend.Controllers.api
                 return BadRequest();
             }
 
-            db.Entry(user).State = EntityState.Modified;
+            _context.Entry(user).State = EntityState.Modified;
 
             try
             {
-                db.SaveChanges();
+                _context.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -79,8 +79,8 @@ namespace TutorAppBackend.Controllers.api
                 return BadRequest(ModelState);
             }
 
-            db.User.Add(user);
-            db.SaveChanges();
+            _context.User.Add(user);
+            _context.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = user.id }, user);
         }
@@ -89,14 +89,14 @@ namespace TutorAppBackend.Controllers.api
         [ResponseType(typeof(User))]
         public IHttpActionResult DeleteUser(int id)
         {
-            User user = db.User.Find(id);
+            User user = _context.User.Find(id);
             if (user == null)
             {
                 return NotFound();
             }
 
-            db.User.Remove(user);
-            db.SaveChanges();
+            _context.User.Remove(user);
+            _context.SaveChanges();
 
             return Ok(user);
         }
@@ -105,14 +105,14 @@ namespace TutorAppBackend.Controllers.api
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool UserExists(int id)
         {
-            return db.User.Count(e => e.id == id) > 0;
+            return _context.User.Count(e => e.id == id) > 0;
         }
     }
 }
