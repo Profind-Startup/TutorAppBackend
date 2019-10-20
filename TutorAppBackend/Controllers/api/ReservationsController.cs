@@ -16,6 +16,8 @@ namespace TutorAppBackend.Controllers.api
     {
         public ReservationsController() : base() { }
 
+        
+
         // GET: api/Reservations
         public IQueryable<Reservation> GetReservation()
         {
