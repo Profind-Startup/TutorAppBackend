@@ -16,6 +16,21 @@ namespace TutorAppBackend.Controllers.api
     {
         public TutorsController() : base() { }
 
+        //GET: api/Tutors/5/User
+        [Route("api/Tutors/{id}/User")]
+        public User GetTutorUser(int tutorid)
+        {
+            Tutor tutor = _context.Tutor.Find(tutorid);
+            if (tutor == null)
+            {
+                return null;
+                //  return NotFound();
+            }
+            return _context.User.Where(x => x.id == tutorid).FirstOrDefault();
+        }
+
+
+
         //GET: api/Tutors/5/Reservations
         [Route("api/Tutors/{id}/Reservations")]
         public IQueryable<Reservation> GetTutorReservations(int id)
