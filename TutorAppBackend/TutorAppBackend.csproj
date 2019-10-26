@@ -241,9 +241,9 @@
     <Compile Include="UserSecurity.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\TutorAppBD.mdf" />
-    <Content Include="App_Data\TutorAppBD_log.ldf">
-      <DependentUpon>TutorAppBD.mdf</DependentUpon>
+    <Content Include="App_Data\TutorAppDB.mdf" />
+    <Content Include="App_Data\TutorAppDB_log.ldf">
+      <DependentUpon>TutorAppDB.mdf</DependentUpon>
     </Content>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
