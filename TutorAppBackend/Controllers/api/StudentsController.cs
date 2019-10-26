@@ -16,6 +16,34 @@ namespace TutorAppBackend.Controllers.api
     {
         public StudentsController() : base() { }
 
+
+        //GET: api/Student/5/User
+        [Route("api/Student/{id}/User")]
+        public User GetStudentUser(int studentid)
+        {
+            Student student = _context.Student.Find(studentid);
+            if (student == null)
+            {
+                return null;
+                //  return NotFound();
+            }
+            return _context.User.Where(x => x.id == studentid).FirstOrDefault();
+
+
+        }
+        //GET: api/Students/5/Reservations
+        [Route("api/Students/{id}/Reservations")]
+        public IQueryable<Reservation> GetStudentReservations(int id)
+        {
+            Student student = _context.Student.Find(id);
+            if (student == null)
+            {
+                return null;
+                //  return NotFound();
+            }
+            return _context.Reservation.Where(x => x.student_id == id);
+        }
+
         // GET: api/Students
         public IQueryable<Student> GetStudent()
         {

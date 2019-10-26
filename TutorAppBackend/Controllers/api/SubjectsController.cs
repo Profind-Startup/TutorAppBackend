@@ -16,6 +16,7 @@ namespace TutorAppBackend.Controllers.api
     {
         public SubjectsController() : base() { }
 
+
         // GET: api/Subjects
         public IQueryable<Subject> GetSubject()
         {
