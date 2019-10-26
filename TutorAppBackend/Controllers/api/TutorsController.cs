@@ -43,8 +43,28 @@ namespace TutorAppBackend.Controllers.api
             }
             return _context.Reservation.Where(x => x.tutor_id == id); 
         }
-        //GET: api/Tutors/5/Reservations/5/Subject
-        [Route("api/Tutors/{id}/Reservations/Subjects")]
+
+        //GET: api/Tutors/5/Subject
+        [Route("api/Tutors/{id}/Subjects")]
+        public IQueryable<Subject> GetTutorSubjects(int id)
+        {
+            Tutor tutor = _context.Tutor.Find(id);
+            if (tutor == null)
+            {
+                return null;
+                //  return NotFound();
+            }
+
+
+                var subjects = _context.Subject.Where(x => x.id_tutor == id);
+
+                
+
+            return subjects;
+        }
+
+       //GET: api/Tutors/5/Reservations/5/Subject
+       /* [Route("api/Tutors/{id}/Reservations/Subjects")]
         public IQueryable<Subject> GetTutorReservationsSubjects(int id)
         {
             Tutor tutor = _context.Tutor.Find(id);
@@ -82,6 +102,7 @@ namespace TutorAppBackend.Controllers.api
             
             return subjects;
         }
+        */
         // GET: api/Tutors
         public IQueryable<Tutor> GetTutor()
         {
