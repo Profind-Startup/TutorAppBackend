@@ -16,6 +16,13 @@ namespace TutorAppBackend.Controllers.api
     {
         public TutorsController() : base() { }
 
+        //GET: api/Users/5/Tutor
+        [Route("api/Users/{id}/Tutor")]
+        public Tutor GetTutorByUser(int id)
+        {
+            return _context.Tutor.Where(x => x.user_id == id).FirstOrDefault();
+        }
+
         //GET: api/Tutors/5/User
         [Route("api/Tutors/{id}/User")]
         public User GetTutorUser(int tutorid)

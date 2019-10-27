@@ -16,6 +16,26 @@ namespace TutorAppBackend.Controllers.api
     {
         public UsersController() : base() { }
 
+        //GET: api/Users/5/Student
+        [Route("api/Users/{id}/Student")]
+        public Student GetStudentByUser(int id)
+        {
+            return _context.Student.Where(x => x.user_id == id).FirstOrDefault();
+        }
+
+        //POST: api/Users/Check
+        [Route("api/Users/Check")]
+        [ResponseType(typeof(User))]
+        public User CheckUserExist(User user)
+        {
+            User user2 = _context.User.Where(x => x.username == user.username && x.password == user.password).FirstOrDefault();
+
+            if (user2 == null)
+                return null;
+
+            return user2;
+        }
+
         // GET: api/Users
         public IQueryable<User> GetUser()
         {
